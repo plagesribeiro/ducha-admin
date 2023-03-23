@@ -11,7 +11,6 @@
 	import type { UserCredential } from 'firebase/auth';
 	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
-	import Checkbox from 'components/Checkbox.svelte';
 	import { FloatingLabelInput, Button, Toggle } from 'flowbite-svelte';
 
 	let emailValue: string;
@@ -82,7 +81,7 @@
 		<div class="font-semibold">Senha</div>
 		<FloatingLabelInput
 			style="outlined"
-			type="text"
+			type="password"
 			label="Senha"
 			bind:value={passwordValue}
 			required

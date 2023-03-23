@@ -2,18 +2,6 @@
 	import { browser } from '$app/environment';
 	import Toast from 'components/Toast.svelte';
 	import '../app.css';
-
-	$: if (browser) {
-		if (
-			localStorage.getItem('theme') === 'dark' ||
-			(!('theme' in localStorage) &&
-				window.matchMedia('(prefers-color-scheme: dark)').matches)
-		) {
-			document.documentElement.classList.add('dark');
-		} else {
-			document.documentElement.classList.remove('dark');
-		}
-	}
 </script>
 
 <svelte:head>

@@ -21,7 +21,7 @@
 		<NavUl {hidden}>
 			<NavLi href="/employees">Funcionários</NavLi>
 			<NavLi href="/washes">Lavagens</NavLi>
-			<NavLi><DarkMode /></NavLi>
+
 			<NavLi href="/auth/logout">Sair</NavLi>
 		</NavUl>
 	</Navbar>

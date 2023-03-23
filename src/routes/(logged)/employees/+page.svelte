@@ -38,8 +38,9 @@
 			return;
 		}
 		const employeeExists = $employees.find(
-			(employee) => employee.name === name
+			(employee) => employee.name === name.trim()
 		);
+
 		if (employeeExists) {
 			danger('Funcionário já cadastrado!');
 			return;
