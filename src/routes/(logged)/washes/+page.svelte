@@ -177,14 +177,14 @@
 								>{wash.date.toLocaleDateString('en-GB')}</TableBodyCell
 							>
 							<TableBodyCell>{wash.quantity}</TableBodyCell>
-							<TableBodyCell>
+							<!--<TableBodyCell>
 								<a
 									href="washes/wash/{wash.id}"
 									class="font-medium text-center text-blue-600 hover:underline dark:text-blue-500 cursor-pointer"
 								>
 									Editar
 								</a>
-							</TableBodyCell>
+							</TableBodyCell>-->
 							<TableBodyCell>
 								<div
 									on:click={() => deleteWash(wash.id)}
