@@ -27,6 +27,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"date-picker-svelte": "^2.3.0",
 		"firebase": "^9.18.0",
 		"svelte-easy-popover": "^1.0.0",
 		"svelte-hero-icons": "^5.0.0",

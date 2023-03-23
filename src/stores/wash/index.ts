@@ -7,7 +7,8 @@ export const washRef = collection(db, 'wash');
 type Wash = {
 	id: string;
 	employeeId: string;
-	day: Date;
+	employeeName: string;
+	date: Date;
 	shift: 'manhã' | 'tarde' | 'noite';
 	size: 'pequeno' | 'medio' | 'grande';
 	payment: string;
