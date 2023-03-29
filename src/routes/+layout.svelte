@@ -1,5 +1,4 @@
 <script>
-	import { browser } from '$app/environment';
 	import Toast from 'components/Toast.svelte';
 	import '../app.css';
 </script>
@@ -11,7 +10,7 @@
 <div id="theme-container">
 	<div id="app-content">
 		<div
-			class="flex flex-col w-screen h-screen overflow-clip items-center justify-start bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100"
+			class="w-screen h-screen flex flex-col items-center justify-center overflow-clip min-w-[350px] bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100"
 		>
 			<Toast />
 			<slot />

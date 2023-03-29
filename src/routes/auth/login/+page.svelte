@@ -33,7 +33,7 @@
 			await signInHandler(auth);
 			success('Login realizado com sucesso');
 
-			await goto('/admin');
+			await goto('/employees');
 		} catch (err: any) {
 			if (err.code === 'auth/user-not-found') {
 				danger('E-mail não cadastrado');
@@ -61,13 +61,12 @@
 </svelte:head>
 
 <form
-	class="flex flex-col items-center gap-3 w-full max-w-xl p-[5%] overflow-auto"
+	class="flex flex-col items-center gap-3  overflow-auto"
 	on:submit|preventDefault={onSubmitLoginForm}
 >
 	<h1 class="font-bold text-2xl w-full">Entrar</h1>
 
-	<label for="email" class="flex flex-col gap-3 w-full mt-4">
-		<div class="font-semibold">Endereço de email</div>
+	<div class="w-full">
 		<FloatingLabelInput
 			style="outlined"
 			type="text"
@@ -75,10 +74,9 @@
 			bind:value={emailValue}
 			required
 		/>
-	</label>
+	</div>
 
-	<label for="email" class="flex flex-col gap-3 w-full">
-		<div class="font-semibold">Senha</div>
+	<div class="w-full">
 		<FloatingLabelInput
 			style="outlined"
 			type="password"
@@ -86,7 +84,7 @@
 			bind:value={passwordValue}
 			required
 		/>
-	</label>
+	</div>
 
 	<div class="flex justify-between items-center w-full text-sm mt-6 mb-6">
 		<label

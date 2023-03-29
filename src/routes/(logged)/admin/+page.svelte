@@ -1,29 +1,46 @@
 <script lang="ts">
-	import { Card } from 'flowbite-svelte';
+	import { browser } from '$app/environment';
+	import { goto } from '$app/navigation';
+	import { Card, Button, Label, Input, Checkbox } from 'flowbite-svelte';
+	import { authentication } from 'stores/firebase';
+
+	let users = [];
+
+	$: if (browser && $authentication !== undefined) {
+		console.log('entrou');
+		if ($authentication && $authentication.email?.endsWith('@asd.asd')) {
+			console.log('aqui');
+			const email = $authentication.email;
+		} else {
+			console.log('vazour');
+			goto('/auth/logout');
+		}
+	}
 </script>
 
-<div class="flex flex-col w-full h-full items-center justify-center gap-4">
-	<Card href="/employees">
-		<h5
-			class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
-		>
-			Acessar painel de Funcionários
-		</h5>
-		<p class="font-normal text-gray-700 dark:text-gray-400 leading-tight">
-			Aqui você acessa o painel de funcionários, onde é possível criar e
-			deletar os funcionários que trabalham na ducha.
-		</p>
-	</Card>
+<Card>
+	<form class="flex flex-col space-y-6" action="/">
+		<h1 class="text-xl font-semibold">Bombas</h1>
 
-	<Card href="/washes">
-		<h5
-			class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
-		>
-			Acessar painel de Lavagens
-		</h5>
-		<p class="font-normal text-gray-700 dark:text-gray-400 leading-tight">
-			Aqui você acessa o painel de lavagens, onde é possível criar e deletar
-			as lavagens realizadas por cada funcionário.
-		</p>
-	</Card>
-</div>
+		<Label class="space-y-2">
+			<span>Your password</span>
+			<Input type="password" name="password" placeholder="•••••" required />
+		</Label>
+		<div class="flex items-start">
+			<Checkbox>Remember me</Checkbox>
+			<a
+				href="/"
+				class="ml-auto text-sm text-blue-700 hover:underline dark:text-blue-500"
+				>Lost password?</a
+			>
+		</div>
+		<Button type="submit" class="w-full">Login to your account</Button>
+		<div class="text-sm font-medium text-gray-500 dark:text-gray-300">
+			Not registered? <a
+				href="/"
+				class="text-blue-700 hover:underline dark:text-blue-500"
+				>Create account</a
+			>
+		</div>
+	</form>
+</Card>

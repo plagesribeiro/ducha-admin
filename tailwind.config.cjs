@@ -6,6 +6,9 @@ module.exports = {
 		'src/**/*.ts*'
 	],
 	theme: {
+		screens: {
+			mobile: { max: '768px' }
+		},
 		extend: {
 			fontFamily: {
 				sans: 'Inter, sans-serif'

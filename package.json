@@ -31,6 +31,7 @@
 		"firebase": "^9.18.0",
 		"svelte-easy-popover": "^1.0.0",
 		"svelte-hero-icons": "^5.0.0",
+		"svelte-input-mask": "^1.1.0",
 		"uuid": "^9.0.0"
 	}
 }
