@@ -13,7 +13,7 @@
 		Esse projeto foi criado para facilitar o controle e a administração da
 		Ducha do posto de gasolina.
 	</spam>
-	<Card href="/day">
+	<Card href="/days">
 		<h5
 			class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
 		>

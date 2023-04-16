@@ -12,9 +12,9 @@
 	}
 </script>
 
-<div class="w-full h-full flex flex-col">
+<div class="w-full h-full flex flex-col overflow-clip">
 	<NavBar />
-	<div class="flex flex-col h-full w-full items-center overflow-auto">
+	<div class="flex flex-col h-full w-full items-center overflow-clip">
 		<slot />
 	</div>
 </div>

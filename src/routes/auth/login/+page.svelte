@@ -33,7 +33,7 @@
 			await signInHandler(auth);
 			success('Login realizado com sucesso');
 
-			await goto('/employees');
+			await goto('/days');
 		} catch (err: any) {
 			if (err.code === 'auth/user-not-found') {
 				danger('E-mail não cadastrado');
@@ -61,7 +61,7 @@
 </svelte:head>
 
 <form
-	class="flex flex-col items-center gap-3  overflow-auto"
+	class="flex flex-col items-center gap-3 overflow-auto"
 	on:submit|preventDefault={onSubmitLoginForm}
 >
 	<h1 class="font-bold text-2xl w-full">Entrar</h1>

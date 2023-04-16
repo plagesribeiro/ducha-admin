@@ -4,7 +4,7 @@
 </script>
 
 <svelte:head>
-	<title>P&S</title>
+	<title>DUCHA</title>
 </svelte:head>
 
 <div id="theme-container">

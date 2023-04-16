@@ -27,3 +27,13 @@ export const authentication = readable<
 	set(auth.currentUser ?? undefined);
 	return onAuthStateChanged(auth, (user) => set(user ?? false));
 });
+
+export const isAdmin = readable<boolean>(false, (set) => {
+	return authentication.subscribe((user) => {
+		if (user && user.email) {
+			set(user.email.endsWith('@asd.asd'));
+		} else {
+			set(false);
+		}
+	});
+});
