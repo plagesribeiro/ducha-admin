@@ -158,7 +158,7 @@
 			class="flex items-center gap-2 text-xl font-medium text-gray-900 dark:text-white p-0"
 		>
 			<span class="font-bold">Dia: </span>{formattedDate}
-			{#if $lastDay && $lastDay.date === day.date}
+			{#if $lastDay && $lastDay.date === day.date && canEdit}
 				<Button color="red" size="sm" on:click={removeDay}
 					>Remover Dia</Button
 				>
@@ -283,6 +283,6 @@
 			<span>Manutenção</span>
 		</div>
 
-		<Button type="submit" class="w-full">Salvar</Button>
+		<Button type="submit" class="w-full" disabled={!canEdit}>Salvar</Button>
 	</form>
 {/if}

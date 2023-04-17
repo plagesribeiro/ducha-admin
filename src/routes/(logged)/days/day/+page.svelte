@@ -199,6 +199,18 @@
 		</h1>
 		<Button href="/days">Ver dias</Button>
 	</div>
+{:else if (today.getTime() - newDay.date) / (1000 * 3600 * 24) <= 3 && !$isAdmin}
+	<div
+		class="w-full h-full max-w-2xl flex flex-col gap-4 items-center text-center justify-center"
+	>
+		<h1
+			class=" w-full overflow-clip font-bold text-red-500 text-xl text-wrap"
+		>
+			O último dia é muito antigo, entre em contato com o administrador para
+			atualizar os dias
+		</h1>
+		<Button href="/days">Ver dias</Button>
+	</div>
 {:else}
 	<form
 		class="flex flex-col gap-2 mt-4 w-full h-full overflow-auto max-w-xl p-1"
