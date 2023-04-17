@@ -10,12 +10,20 @@
 	import { success } from 'components/Toast.svelte';
 	import { isAdmin } from 'stores/firebase';
 	import CreatePumpModal from 'components/CreatePumpModal.svelte';
+	import { lastDay } from 'stores/days';
 
 	$: if (browser && $authentication !== undefined) {
 		if (!$isAdmin) {
 			goto('/auth/logout');
 		}
 	}
+
+	const today = new Date();
+	today.setHours(0, 0, 0, 0);
+
+	$: canEdit =
+		$lastDay !== undefined &&
+		($lastDay?.date === today.getTime() || $lastDay === null);
 
 	const addInitConfiguration = () => {
 		configuration.set({
@@ -78,17 +86,21 @@
 							<p>{price.value} reais</p>
 						</div>
 
-						<div
-							class="cursor-pointer"
-							on:click={() => deletePrice(price.id)}
-							on:keydown
-						>
-							<Icon src={Trash} size="18" class="text-red-500" />
-						</div>
+						{#if canEdit}
+							<div
+								class="cursor-pointer"
+								on:click={() => deletePrice(price.id)}
+								on:keydown
+							>
+								<Icon src={Trash} size="18" class="text-red-500" />
+							</div>
+						{/if}
 					</div>
 				{/each}
-				<Button class="w-full mt-4" on:click={showCreatePriceModal}
-					>Adicionar Preço</Button
+				<Button
+					class="w-full mt-4"
+					on:click={showCreatePriceModal}
+					disabled={!canEdit}>Adicionar Preço</Button
 				>
 			</div>
 		</Card>
@@ -108,17 +120,21 @@
 							<p>{pump.counter}</p>
 						</div>
 
-						<div
-							class="cursor-pointer"
-							on:click={() => deletePump(pump.id)}
-							on:keydown
-						>
-							<Icon src={Trash} size="18" class="text-red-500" />
-						</div>
+						{#if canEdit}
+							<div
+								class="cursor-pointer"
+								on:click={() => deletePump(pump.id)}
+								on:keydown
+							>
+								<Icon src={Trash} size="18" class="text-red-500" />
+							</div>
+						{/if}
 					</div>
 				{/each}
-				<Button class="w-full mt-4" on:click={showCreatePumpModal}
-					>Adicionar Bomba</Button
+				<Button
+					class="w-full mt-4"
+					on:click={showCreatePumpModal}
+					disabled={!canEdit}>Adicionar Bomba</Button
 				>
 			</div>
 		</Card>

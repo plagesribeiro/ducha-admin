@@ -20,10 +20,10 @@
 		</NavBrand>
 		<NavHamburger on:click={toggle} />
 		<NavUl {hidden}>
+			<NavLi href="/days">Dias</NavLi>
 			{#if $isAdmin}
 				<NavLi href="/admin">Admin</NavLi>
 				<NavLi href="/admin/employees">Funcionários</NavLi>
-				<NavLi href="/days">Dias</NavLi>
 			{/if}
 
 			<NavLi href="/auth/logout">Sair</NavLi>

@@ -12,11 +12,23 @@ import {
 	type WhereFilterOp
 } from 'firebase/firestore';
 import type { Day } from 'models/day';
+import { updatePump } from 'services/configurations';
 import { daysPage, daysPageCount, lastDay } from 'stores/days';
 import { db } from 'stores/firebase';
 import { v4 as uuidv4 } from 'uuid';
 
 const dayRef = collection(db, 'days');
+
+export const updateLastDay = async (): Promise<void> => {
+	const day = await getLastDay();
+	lastDay.set(day);
+};
+
+export const refreshDaysPage = async (): Promise<void> => {
+	const days = await getNextPage();
+	daysPage.set(days);
+	daysPageCount.set(0);
+};
 
 export const getLastDay = async (): Promise<Day | null> => {
 	const response = await getDocs(
@@ -85,19 +97,9 @@ export const addDay = async (day: Day): Promise<void> => {
 		washes: day.washes
 	});
 
-	const nextPage = await getNextPage();
-
-	daysPage.update(() => {
-		return nextPage;
-	});
-
-	daysPageCount.update(() => {
-		return 0;
-	});
-
-	lastDay.update(() => {
-		return nextPage[0];
-	});
+	await updatePump();
+	await updateLastDay();
+	await refreshDaysPage();
 };
 
 export const deleteDay = async (day: Day): Promise<void> => {
@@ -108,6 +110,10 @@ export const deleteDay = async (day: Day): Promise<void> => {
 	const dayId = response.docs[0].id;
 
 	await deleteDoc(doc(dayRef, dayId));
+
+	await updatePump();
+	await updateLastDay();
+	await refreshDaysPage();
 };
 
 export const updateDay = async (day: Day): Promise<void> => {
@@ -124,4 +130,13 @@ export const updateDay = async (day: Day): Promise<void> => {
 		prices: day.prices,
 		washes: day.washes
 	});
+
+	lastDay.update((lastDay) => {
+		if (lastDay?.date === day.date) {
+			return day;
+		}
+		return lastDay;
+	});
+
+	await updatePump();
 };

@@ -1,7 +1,8 @@
-import { collection, doc, getDoc, setDoc } from 'firebase/firestore';
+import { collection, doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import { db } from 'stores/firebase';
 import type { Configuration, Price, Pump } from 'models/configurations';
 import { configuration } from 'stores/configurations';
+import { getLastDay } from 'services/day';
 
 export const configRef = collection(db, 'configurations');
 
@@ -119,5 +120,30 @@ export const removePump = async (pumpId: string): Promise<void> => {
 	};
 
 	await setDoc(doc(configRef, 'configuration'), newConfig);
+	configuration.set(newConfig);
+};
+
+export const updatePump = async (): Promise<void> => {
+	const config = await getConfiguration();
+	const day = await getLastDay();
+
+	if (!config || !day) {
+		return;
+	}
+
+	const newConfig = {
+		...config,
+		pumps: config.pumps.map((pump) => {
+			const pumpDay = day.pumps.find(
+				(pumpDay) => pumpDay.pumpName === pump.name
+			);
+			return {
+				...pump,
+				counter: pumpDay?.final ?? pump.counter
+			};
+		})
+	};
+
+	await updateDoc(doc(configRef, 'configuration'), newConfig);
 	configuration.set(newConfig);
 };

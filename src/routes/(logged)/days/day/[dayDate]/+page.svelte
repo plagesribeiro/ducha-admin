@@ -27,21 +27,19 @@
 	today.setHours(0, 0, 0, 0);
 
 	const canEdit =
-		$isAdmin || (today.getTime() - day.date) / (1000 * 3600 * 24) <= 3;
+		$isAdmin || (today.getTime() - day?.date) / (1000 * 3600 * 24) <= 3;
 
-	console.log(canEdit);
-
-	const priceOptions = day.prices.map((price) => ({
+	const priceOptions = day?.prices.map((price) => ({
 		name: price.priceName,
 		value: price.priceValue
 	}));
 
 	$: totalPumps =
-		day.pumps.reduce(
+		day?.pumps.reduce(
 			(acc, pump) => acc + parseInt(pump.final) - parseInt(pump.init),
 			0
-		) - parseInt(day.maintenance);
-	$: totalWashes = day.washes.reduce(
+		) - parseInt(day?.maintenance);
+	$: totalWashes = day?.washes.reduce(
 		(acc, wash) => acc + parseInt(wash.quantity),
 		0
 	);
