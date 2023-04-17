@@ -301,7 +301,7 @@
 					/>
 				</div>
 			{/each}
-			<div class="w-full flex items-center justify-center">
+			<div class="w-full flex items-center justify-center gap-2">
 				<Button
 					type="button"
 					color="green"
