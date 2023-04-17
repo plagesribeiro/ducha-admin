@@ -86,21 +86,17 @@
 							<p>{price.value} reais</p>
 						</div>
 
-						{#if canEdit}
-							<div
-								class="cursor-pointer"
-								on:click={() => deletePrice(price.id)}
-								on:keydown
-							>
-								<Icon src={Trash} size="18" class="text-red-500" />
-							</div>
-						{/if}
+						<div
+							class="cursor-pointer"
+							on:click={() => deletePrice(price.id)}
+							on:keydown
+						>
+							<Icon src={Trash} size="18" class="text-red-500" />
+						</div>
 					</div>
 				{/each}
-				<Button
-					class="w-full mt-4"
-					on:click={showCreatePriceModal}
-					disabled={!canEdit}>Adicionar Preço</Button
+				<Button class="w-full mt-4" on:click={showCreatePriceModal}
+					>Adicionar Preço</Button
 				>
 			</div>
 		</Card>
@@ -120,21 +116,17 @@
 							<p>{pump.counter}</p>
 						</div>
 
-						{#if canEdit}
-							<div
-								class="cursor-pointer"
-								on:click={() => deletePump(pump.id)}
-								on:keydown
-							>
-								<Icon src={Trash} size="18" class="text-red-500" />
-							</div>
-						{/if}
+						<div
+							class="cursor-pointer"
+							on:click={() => deletePump(pump.id)}
+							on:keydown
+						>
+							<Icon src={Trash} size="18" class="text-red-500" />
+						</div>
 					</div>
 				{/each}
-				<Button
-					class="w-full mt-4"
-					on:click={showCreatePumpModal}
-					disabled={!canEdit}>Adicionar Bomba</Button
+				<Button class="w-full mt-4" on:click={showCreatePumpModal}
+					>Adicionar Bomba</Button
 				>
 			</div>
 		</Card>
